@@ -50,7 +50,7 @@
 
 int main(int argc, char *argv[]) {
     if (argc < 3) {
-        printf("Usage: ./test <TRIANGLE_HEIGHT> <NUM_TRIANGLES>\n"); 
+        printf("Usage: ./n_force <TRIANGLE_HEIGHT> <NUM_TRIANGLES>\n"); 
         return 1;
     }
     const int h = atoi(argv[1]);  // Triangle height.
@@ -58,7 +58,7 @@ int main(int argc, char *argv[]) {
 
     const int max_height = h * n; // The maximum value of "j".
 
-    int i, j, k, l, m;
+    int i, j, k, l;
     int empty_blocks = 0; // Number of "empty" square blocks before the triangles.
 
     for (j = 0; j < max_height; ++j) {
@@ -66,7 +66,7 @@ int main(int argc, char *argv[]) {
         k = (j / h);
 
         // Calculate how many empty blocks there are.
-        empty_blocks = (j == 0) ? (n - 1) : ((n - 1) - k);
+        empty_blocks = ((n - 1) - k);
         
         // Draw the first triangle in the row.
         for (i = 0; i < max_height + j; ++i) {
@@ -81,10 +81,10 @@ int main(int argc, char *argv[]) {
 
         // Draw all the other triangles in the row.
         for (l = 0; l < k; ++l) {
-            for (m = 0; m < 2 * h; ++m) {
-                if ((m > h - (j % h) - 2) && (m < h + (j % h))) 
+            for (i = 0; i < 2 * h; ++i) {
+                if ((i > h - (j % h) - 2) && (i < h + (j % h))) 
                     printf("*");
-                else if (l < k - 1 || m < h)
+                else if (l < k - 1 || i < h)
                     printf(" ");
             }
         }
